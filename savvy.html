@@ -16,28 +16,73 @@
 body{margin:0;background:#FFFFFF}
 a{color:#2F55A4}a:hover{color:#1E3C7A}
 figure{flex-basis:250px !important;min-width:200px !important}
-
+/* mobile layer */
+.m-menu-btn{display:none}
 @media (max-width: 640px) {
+  /* spacing: 20px side margins, tighter vertical rhythm */
+  .m-pad { padding: 56px 20px !important; }
+  .m-pad-top { padding: 56px 20px 0 !important; }
+  .m-hero-pad { padding: 48px 20px 44px !important; gap: 32px !important; }
+  .m-bar { padding: 14px 20px !important; }
+  [style*="margin-top: 120px"] { margin-top: 56px !important; }
   [style*="flex: 1 1"], [style*="flex: 2 1"], [style*="flex: 0 1"] { flex-basis: 100% !important; min-width: 0 !important; }
-  [style*="grid-template-columns: repeat(auto-fit, minmax("], [style*="grid-template-columns: repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
-  [style*="padding: 48px;"] { padding: 28px !important; }
-  h1 { font-size: clamp(40px, 11vw, 104px) !important; }
+  [style*="repeat(auto-fit, minmax("], [style*="repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="gap: 64px"], [style*="gap: 56px"], [style*="gap: 48px"], [style*="gap: 44px"], [style*="gap: 40px"] { row-gap: 28px !important; column-gap: 20px !important; }
+  [style*="gap: 20px 64px"], [style*="gap: 24px 64px"], [style*="gap: 32px 64px"], [style*="gap: 40px 64px"], [style*="gap: 48px 64px"], [style*="gap: 48px 72px"], [style*="gap: 32px 72px"] { gap: 16px !important; }
+  .m-two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
   img { max-width: 100%; }
-  /* home: decorative shapes become a compact strip */
+
+  /* type scale: 16px body minimum, headings that fit a phone */
+  h1 { font-size: clamp(40px, 12vw, 52px) !important; line-height: 1.02 !important; }
+  h2[style*="font-size: 34px"], h2[style*="font-size: 36px"], h2[style*="font-size: 40px"], h2[style*="font-size: 30px"] { font-size: 28px !important; line-height: 1.15 !important; }
+  h3[style*="clamp(30px"], h3[style*="clamp(28px"] { font-size: 28px !important; }
+  p[style*="font-size: 24px"], p[style*="font-size: 21px"], p[style*="font-size: 20px"] { font-size: 18px !important; }
+  p[style*="clamp("] { font-size: 22px !important; }
+  p[style*="font-size: 17px"], p[style*="font-size: 18px"] { font-size: 16px !important; }
+
+  /* galleries become swipeable rows: the next item peeks in to show there is more */
+  .m-swipe { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px !important; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 6px !important; justify-content: flex-start !important; align-items: flex-start !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .m-swipe::-webkit-scrollbar { display: none; }
+  .m-swipe > * { flex: 0 0 82% !important; min-width: 0 !important; max-width: none !important; scroll-snap-align: center; }
+  .m-swipe.m-phones > * { flex-basis: 62% !important; }
+  .m-swipe > *:only-child { margin: 0 auto !important; }
+  div[style*="gap: 40px 32px"] > figure:only-child { flex: 0 0 62% !important; }
+
+  /* header: logo + menu button; links open as a full-width list */
+  .m-menu-btn { display: inline-flex !important; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #CFC6DE; background: transparent; color: #F4F2F8; font: 500 15px Poppins, sans-serif; cursor: pointer; }
+  .m-nav { display: none !important; }
+  .m-nav[data-open="true"] { display: flex !important; flex-direction: column; flex-basis: 100%; gap: 0 !important; padding-top: 6px; }
+  .m-nav[data-open="true"] a { padding: 14px 2px !important; font-size: 18px !important; border-top: 1px solid rgba(255,255,255,0.14); border-radius: 0 !important; background: transparent !important; color: #F4F2F8 !important; }
+
+  /* home */
   #top > div[aria-hidden], #contact > div[aria-hidden] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; min-height: 0 !important; }
   #top > div[aria-hidden] > div, #contact > div[aria-hidden] > div { aspect-ratio: 1; }
   #contact > div[aria-hidden] span { font-size: 22px !important; }
+  #top span[style*="border-radius: 50%"] { width: 160px !important; height: 64px !important; font-size: 16px !important; }
+  #top span[style*="margin-left: -28px"] { width: 132px !important; height: 52px !important; margin-top: 36px !important; font-size: 14px !important; }
   #about > div:last-child { display: none !important; }
-  #about { padding-top: 72px !important; padding-bottom: 72px !important; }
-  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  a[style*="padding: 26px 40px"] { padding: 20px 26px !important; font-size: 17px !important; }
-  /* savvy: swipeable rows of phones */
-  div[style*="gap: 40px 32px"] { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -40px; padding: 0 40px 12px; gap: 20px !important; }
-  div[style*="gap: 40px 32px"] > figure[style] { flex: 0 0 68% !important; min-width: 0 !important; scroll-snap-align: center; }
-  div[style*="gap: 40px 32px"] > figure[style]:only-child { margin: 0 auto !important; }
-  /* honeycomb hero image: show the whole mockup */
+  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; row-gap: 20px !important; }
+  #work h2[style*="dashed"], #experience h2[style*="border-radius: 50%"] { width: 210px !important; height: 76px !important; font-size: 18px !important; }
+  #work [role="group"] { flex-wrap: nowrap !important; overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px; scrollbar-width: none; }
+  #work [role="group"] button { flex: 0 0 auto; }
+  #work [style*="padding: 48px;"] { padding: 28px 22px !important; gap: 24px !important; }
+  #work [style*="min-height: 380px"] { min-height: 0 !important; padding: 8px 20px 0 !important; }
+  #work [style*="min-height: 340px"] { min-height: 260px !important; }
+  #work img[style*="aspect-ratio: 4 / 3"] { aspect-ratio: 16 / 10 !important; }
+  #experience [style*="padding: 22px 0"] { padding: 16px 0 !important; }
+  #contact a[style*="padding: 26px 40px"] { padding: 18px 24px !important; font-size: 17px !important; }
+  #contact span[style*="margin-left: -16px"] { margin-top: 36px !important; }
+
+  #work [style*="minmax(300px"] { gap: 16px !important; }
+  #work article p, #work a p { font-size: 15px !important; }
+  #about p[style*="font-size: 20px"] { font-size: 17px !important; }
+  /* case studies */
+  img[style*="width: 150px"] { width: 96px !important; }
   [style*="min-height: 480px"] { min-height: 0 !important; }
   img[style*="min-height: 480px"] { height: auto !important; object-fit: contain !important; }
+  [style*="column-width"] { column-count: 2; column-width: auto !important; column-gap: 12px !important; }
+  [style*="column-width"] img { margin-bottom: 12px !important; border-radius: 8px !important; }
+  figcaption, [style*="font-size: 15px; color: #6E5550"] { font-size: 14px !important; }
 }
 </style>
 </head>
@@ -45,14 +90,14 @@ figure{flex-basis:250px !important;min-width:200px !important}
 <div style="font-family: Poppins, system-ui, sans-serif; color: #16182A; background: #FFFFFF">
 
 <header style="background: #3D1A4A">
-<div style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
 <a href="index.html" style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 22px; color: #F4F2F8; text-decoration: none">hsb</a>
 <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 14px; font-size: 15px; color: #E7E2F0; text-decoration: none"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 19l-7-7 7-7"></path></svg>back to all work</a>
 </div>
 </header>
 
 <section style="background: linear-gradient(90deg, #16122D 0%, #16122D 50%, #120E25 62.5%, #0F0C1F 75%, #0B0917 87.5%, #07060E 100%); color: #FFFFFF">
-<div style="max-width: 1280px; margin: 0 auto; padding: 88px 40px 56px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 72px; align-items: flex-end; justify-content: space-between">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 88px 40px 56px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 72px; align-items: flex-end; justify-content: space-between">
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 24px">
 <span style="width: fit-content; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #16122D; background: #3DDC84; padding: 6px 12px; border-radius: 999px">Product design · Dfinitiv</span>
 <h1 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 500; font-size: clamp(56px, 7vw, 104px); line-height: 0.95; letter-spacing: -0.02em">Savvy</h1>
@@ -71,14 +116,14 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 48px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; border-bottom: 1px solid #E3E6EF">
+<section class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 48px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; border-bottom: 1px solid #E3E6EF">
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6178">Role</p><p style="margin: 0; font-size: 17px">Lead designer: UX, UI, brand and design system</p></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6178">Team</p><p style="margin: 0; font-size: 17px">A 10–15 person startup: engineering, QA, business and leadership</p></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6178">Launch</p><p style="margin: 0; font-size: 17px">“Savvy – Spend Smart” on the App Store, August 31, 2023</p></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6178">Tools</p><p style="margin: 0; font-size: 17px">Figma</p></div>
 </section>
 
-<section style="max-width: 980px; margin: 0 auto; padding: 72px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<section class="m-pad" style="max-width: 980px; margin: 0 auto; padding: 72px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">The problem</p>
 <p style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 500; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.35">Most people carry several cards and hundreds of card-linked offers, and still leave money on the table at checkout.</p>
 <p style="margin: 0; font-size: 18px; font-weight: 300; line-height: 1.7; color: #2A2F45">They pay with whichever card is on top, forget to activate offers, and find out about deals after they’ve already bought. Savvy puts the right card and the right offer in front of them at the moment they’re about to spend.</p>
@@ -86,7 +131,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </section>
 
 <section style="background: #F1F2F7">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">01 · Home</p>
@@ -103,7 +148,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 <section>
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">02 · Wallet</p>
@@ -111,7 +156,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #2A2F45">Connecting cards kicks off offer discovery, so new users see value right away. The wallet then shows each card and loyalty program with its live offers and their total value.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
+<div class="m-swipe m-phones" style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
 <figure style="margin: 0; flex: 0 1 300px; min-width: 220px; display: flex; flex-direction: column; gap: 14px">
 <div style="aspect-ratio: 9 / 19.5; border: 8px solid #16182A; border-radius: 40px; overflow: hidden; background: #F1F2F7"><div style="height: 100%; overflow-y: auto"><img src="assets/2169ade7ef89.jpg" alt="Offer discovery screen showing PayPal offers loading at 25 percent and logos of activated merchants" style="width: 100%; height: auto; display: block"></div></div>
 <figcaption style="font-size: 15px; line-height: 1.5; color: #3A4057; text-align: center">Auto-activating offers for the user</figcaption>
@@ -128,7 +173,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 <section style="background: #F1F2F7">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">03 · Recommendations</p>
@@ -145,7 +190,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 <section>
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">04 · Merchants</p>
@@ -153,7 +198,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #2A2F45">Each store page ranks the cards in your wallet by how much you’d save there and lists every offer, with the details and the card to use. A full-screen view makes a single offer feel like something to shop.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
+<div class="m-swipe m-phones" style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
 <figure style="margin: 0; flex: 0 1 300px; min-width: 220px; display: flex; flex-direction: column; gap: 14px">
 <div style="aspect-ratio: 9 / 19.5; border: 8px solid #16182A; border-radius: 40px; overflow: hidden; background: #F1F2F7"><div style="height: 100%; overflow-y: auto"><img src="assets/e63334fc6836.jpg" alt="Ulta Beauty store page ranking wallet cards by estimated savings" style="width: 100%; height: auto; display: block"></div></div>
 <figcaption style="font-size: 15px; line-height: 1.5; color: #3A4057">Store page: your cards, ranked by savings</figcaption>
@@ -170,7 +215,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 <section style="background: #F1F2F7">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">05 · Brand storefronts</p>
@@ -178,7 +223,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #2A2F45">Every brand gets its own branded storefront: a look at the space and products, its top offers, nearby locations, the guides it appears in, and a chat to ask about it. Brands can also promote a message at the top. These two show a local coffee roaster and a hotel group, with rewards earned in miles through an airline partner.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
+<div class="m-swipe m-phones" style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
 <figure style="margin: 0; flex: 0 1 300px; min-width: 220px; display: flex; flex-direction: column; gap: 14px">
 <div style="aspect-ratio: 9 / 19.5; border: 8px solid #16182A; border-radius: 40px; overflow: hidden; background: #F1F2F7"><div style="height: 100%; overflow-y: auto"><img src="assets/2988f2003b78.jpg" alt="Joe Coffee page with miles offers, a nearby map, guides and chat prompts" style="width: 100%; height: auto; display: block"></div></div>
 <figcaption style="font-size: 15px; line-height: 1.5; color: #3A4057">Joe Coffee: a local roaster’s storefront<span style="font-size: 12px; color: #5A6178"> · scroll the screen</span></figcaption>
@@ -191,7 +236,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 </section>
 <section>
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #2F55A4">06 · Savvy AI</p>
@@ -199,7 +244,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #2A2F45">A chat assistant answers questions like “what cards should I have in my wallet?” using your spending, and shows the cards it recommends. A clear reminder asks people to double-check AI advice before they act on it.</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
+<div class="m-swipe m-phones" style="display: flex; flex-wrap: wrap; gap: 40px 32px; justify-content: center">
 <figure style="margin: 0; flex: 0 1 300px; min-width: 220px; display: flex; flex-direction: column; gap: 14px">
 <div style="aspect-ratio: 9 / 19.5; border: 8px solid #16182A; border-radius: 40px; overflow: hidden; background: #F1F2F7"><div style="height: 100%; overflow-y: auto"><img src="assets/b804cb2e1162.jpg" alt="Savvy chat welcome screen with a reminder to verify AI recommendations" style="width: 100%; height: auto; display: block"></div></div>
 <figcaption style="font-size: 15px; line-height: 1.5; color: #3A4057">Welcome, with a reminder to verify AI advice</figcaption>
@@ -213,7 +258,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </section>
 
 <section style="background: #16182A; color: #F1F2F7">
-<div style="max-width: 1280px; margin: 0 auto; padding: 104px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-end; justify-content: space-between">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 104px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-end; justify-content: space-between">
 <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 16px; max-width: 720px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #A9BDF0">What happened next</p>
 <p style="margin: 0; font-size: 20px; font-weight: 300; line-height: 1.65">Savvy launched on the App Store on August 31, 2023 and built a following on social media. Dfinitiv then pivoted to B2B, and the company now builds SmartCXP, a platform that brings brands’ loyalty programs into AI assistants.</p>
@@ -223,7 +268,7 @@ figure{flex-basis:250px !important;min-width:200px !important}
 </section>
 
 <footer style="background: #1E0D25; color: #CFC6DE">
-<div style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
 <span>© 2026 hannah barenboim</span>
 <a href="mailto:hsb.designs@gmail.com" style="color: #CFC6DE">hsb.designs@gmail.com</a>
 </div>

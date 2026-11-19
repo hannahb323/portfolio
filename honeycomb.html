@@ -15,28 +15,73 @@
 <style>
 body{margin:0;background:#FFF8E8}
 a{color:#3D1A4A}a:hover{color:#5B3470}
-
+/* mobile layer */
+.m-menu-btn{display:none}
 @media (max-width: 640px) {
+  /* spacing: 20px side margins, tighter vertical rhythm */
+  .m-pad { padding: 56px 20px !important; }
+  .m-pad-top { padding: 56px 20px 0 !important; }
+  .m-hero-pad { padding: 48px 20px 44px !important; gap: 32px !important; }
+  .m-bar { padding: 14px 20px !important; }
+  [style*="margin-top: 120px"] { margin-top: 56px !important; }
   [style*="flex: 1 1"], [style*="flex: 2 1"], [style*="flex: 0 1"] { flex-basis: 100% !important; min-width: 0 !important; }
-  [style*="grid-template-columns: repeat(auto-fit, minmax("], [style*="grid-template-columns: repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
-  [style*="padding: 48px;"] { padding: 28px !important; }
-  h1 { font-size: clamp(40px, 11vw, 104px) !important; }
+  [style*="repeat(auto-fit, minmax("], [style*="repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="gap: 64px"], [style*="gap: 56px"], [style*="gap: 48px"], [style*="gap: 44px"], [style*="gap: 40px"] { row-gap: 28px !important; column-gap: 20px !important; }
+  [style*="gap: 20px 64px"], [style*="gap: 24px 64px"], [style*="gap: 32px 64px"], [style*="gap: 40px 64px"], [style*="gap: 48px 64px"], [style*="gap: 48px 72px"], [style*="gap: 32px 72px"] { gap: 16px !important; }
+  .m-two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
   img { max-width: 100%; }
-  /* home: decorative shapes become a compact strip */
+
+  /* type scale: 16px body minimum, headings that fit a phone */
+  h1 { font-size: clamp(40px, 12vw, 52px) !important; line-height: 1.02 !important; }
+  h2[style*="font-size: 34px"], h2[style*="font-size: 36px"], h2[style*="font-size: 40px"], h2[style*="font-size: 30px"] { font-size: 28px !important; line-height: 1.15 !important; }
+  h3[style*="clamp(30px"], h3[style*="clamp(28px"] { font-size: 28px !important; }
+  p[style*="font-size: 24px"], p[style*="font-size: 21px"], p[style*="font-size: 20px"] { font-size: 18px !important; }
+  p[style*="clamp("] { font-size: 22px !important; }
+  p[style*="font-size: 17px"], p[style*="font-size: 18px"] { font-size: 16px !important; }
+
+  /* galleries become swipeable rows: the next item peeks in to show there is more */
+  .m-swipe { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px !important; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 6px !important; justify-content: flex-start !important; align-items: flex-start !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .m-swipe::-webkit-scrollbar { display: none; }
+  .m-swipe > * { flex: 0 0 82% !important; min-width: 0 !important; max-width: none !important; scroll-snap-align: center; }
+  .m-swipe.m-phones > * { flex-basis: 62% !important; }
+  .m-swipe > *:only-child { margin: 0 auto !important; }
+  div[style*="gap: 40px 32px"] > figure:only-child { flex: 0 0 62% !important; }
+
+  /* header: logo + menu button; links open as a full-width list */
+  .m-menu-btn { display: inline-flex !important; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #CFC6DE; background: transparent; color: #F4F2F8; font: 500 15px Poppins, sans-serif; cursor: pointer; }
+  .m-nav { display: none !important; }
+  .m-nav[data-open="true"] { display: flex !important; flex-direction: column; flex-basis: 100%; gap: 0 !important; padding-top: 6px; }
+  .m-nav[data-open="true"] a { padding: 14px 2px !important; font-size: 18px !important; border-top: 1px solid rgba(255,255,255,0.14); border-radius: 0 !important; background: transparent !important; color: #F4F2F8 !important; }
+
+  /* home */
   #top > div[aria-hidden], #contact > div[aria-hidden] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; min-height: 0 !important; }
   #top > div[aria-hidden] > div, #contact > div[aria-hidden] > div { aspect-ratio: 1; }
   #contact > div[aria-hidden] span { font-size: 22px !important; }
+  #top span[style*="border-radius: 50%"] { width: 160px !important; height: 64px !important; font-size: 16px !important; }
+  #top span[style*="margin-left: -28px"] { width: 132px !important; height: 52px !important; margin-top: 36px !important; font-size: 14px !important; }
   #about > div:last-child { display: none !important; }
-  #about { padding-top: 72px !important; padding-bottom: 72px !important; }
-  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  a[style*="padding: 26px 40px"] { padding: 20px 26px !important; font-size: 17px !important; }
-  /* savvy: swipeable rows of phones */
-  div[style*="gap: 40px 32px"] { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -40px; padding: 0 40px 12px; gap: 20px !important; }
-  div[style*="gap: 40px 32px"] > figure[style] { flex: 0 0 68% !important; min-width: 0 !important; scroll-snap-align: center; }
-  div[style*="gap: 40px 32px"] > figure[style]:only-child { margin: 0 auto !important; }
-  /* honeycomb hero image: show the whole mockup */
+  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; row-gap: 20px !important; }
+  #work h2[style*="dashed"], #experience h2[style*="border-radius: 50%"] { width: 210px !important; height: 76px !important; font-size: 18px !important; }
+  #work [role="group"] { flex-wrap: nowrap !important; overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px; scrollbar-width: none; }
+  #work [role="group"] button { flex: 0 0 auto; }
+  #work [style*="padding: 48px;"] { padding: 28px 22px !important; gap: 24px !important; }
+  #work [style*="min-height: 380px"] { min-height: 0 !important; padding: 8px 20px 0 !important; }
+  #work [style*="min-height: 340px"] { min-height: 260px !important; }
+  #work img[style*="aspect-ratio: 4 / 3"] { aspect-ratio: 16 / 10 !important; }
+  #experience [style*="padding: 22px 0"] { padding: 16px 0 !important; }
+  #contact a[style*="padding: 26px 40px"] { padding: 18px 24px !important; font-size: 17px !important; }
+  #contact span[style*="margin-left: -16px"] { margin-top: 36px !important; }
+
+  #work [style*="minmax(300px"] { gap: 16px !important; }
+  #work article p, #work a p { font-size: 15px !important; }
+  #about p[style*="font-size: 20px"] { font-size: 17px !important; }
+  /* case studies */
+  img[style*="width: 150px"] { width: 96px !important; }
   [style*="min-height: 480px"] { min-height: 0 !important; }
   img[style*="min-height: 480px"] { height: auto !important; object-fit: contain !important; }
+  [style*="column-width"] { column-count: 2; column-width: auto !important; column-gap: 12px !important; }
+  [style*="column-width"] img { margin-bottom: 12px !important; border-radius: 8px !important; }
+  figcaption, [style*="font-size: 15px; color: #6E5550"] { font-size: 14px !important; }
 }
 </style>
 </head>
@@ -44,14 +89,14 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 <div style="font-family: Poppins, system-ui, sans-serif; color: #2B1512; background: #FFF8E8">
 
 <header style="background: #3D1A4A">
-<div style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
 <a href="index.html" style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 22px; color: #F4F2F8; text-decoration: none">hsb</a>
 <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 14px; font-size: 15px; color: #E7E2F0; text-decoration: none"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 19l-7-7 7-7"></path></svg>back to all work</a>
 </div>
 </header>
 
 <section style="background: #33110F; color: #FFF4D6; display: flex; flex-wrap: wrap">
-<div style="flex: 1 1 560px; padding: 104px 40px 88px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 64px">
+<div class="m-hero-pad" style="flex: 1 1 560px; padding: 104px 40px 88px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 64px">
 <div style="display: flex; flex-direction: column; gap: 28px">
 <h1 style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 600; font-size: clamp(52px, 6.4vw, 96px); line-height: 0.98; letter-spacing: 0.01em">HONEYCOMB<br>CREAMERY</h1>
 <p style="margin: 0; max-width: 520px; font-size: 20px; font-weight: 300; line-height: 1.55; color: #F6E7D3">A rebrand for a Cambridge ice cream shop that feels whimsical, bold and indulgent, and lets its inventive flavors speak for themselves.</p>
@@ -64,7 +109,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 <div style="flex: 1 1 440px; min-height: 480px; display: flex; background: #14193F"><img src="assets/f8894e9589ab.jpg" alt="Honeycomb Creamery website on a laptop with flavor filters, and the Instagram profile on a phone" style="width: 100%; min-height: 480px; object-fit: cover; display: block"></div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 64px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; border-bottom: 1px solid #EADBC4">
+<section class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 64px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; border-bottom: 1px solid #EADBC4">
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6E5550">Role</p><p style="margin: 0; font-size: 17px">Brand strategy &amp; identity</p></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6E5550">Course</p><p style="margin: 0; font-size: 17px">Food &amp; Restaurant Branding with Douglas Riccardi, The Cooper Union</p></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6E5550">Timeline</p><p style="margin: 0; font-size: 17px">4 weeks, April 2026</p></div>
@@ -72,7 +117,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <section style="background: #D9C3F2">
-<div style="max-width: 1100px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px">
+<div class="m-pad" style="max-width: 1100px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px">
 <div style="flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 32px 56px">
 <img src="assets/d19f642ada6a.png" alt="Three hand-drawn stacked rings in vanilla, chocolate and pink, like scoops of ice cream" style="flex: 0 0 auto; width: 150px; height: auto; display: block">
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px">
@@ -91,7 +136,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<section class="m-pad-top" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6E5550">01 · Today's scoop</p>
 <h2 style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 500; font-size: 40px; color: #33110F">Where the brand was melting</h2>
@@ -108,13 +153,13 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <section style="margin-top: 120px; background: #F4B3C8">
-<div style="max-width: 1000px; margin: 0 auto; padding: 96px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; text-align: center; align-items: center">
+<div class="m-pad" style="max-width: 1000px; margin: 0 auto; padding: 96px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; text-align: center; align-items: center">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #5A1F35">The big idea · time to rotate</p>
 <p style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.3; color: #33110F">Let the inventive flavors speak for themselves, with branding that's indulgent, informative and fun.</p>
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<section class="m-pad-top" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6E5550">02 · Exploring</p>
@@ -122,7 +167,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 <p style="margin: 0; max-width: 520px; font-size: 17px; font-weight: 300; line-height: 1.7">I started with inspiration beyond the usual ice cream clichés, then sketched two concepts and four logo directions by hand before narrowing in.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px 20px">
+<div class="m-swipe" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px 20px">
 <div style="display: flex; flex-direction: column; gap: 10px"><img src="assets/380682fa82e3.jpg" alt="Inspiration board: sprinkle ice cream, colorful pendant lights, illustrated packaging and hand-lettered flavor cards" style="width: 100%; height: auto; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">Week 1 inspiration board</p></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><img src="assets/6bd473e7bc3e.jpg" alt="Concept 1 sketches: an elegant line-drawn cone with a lavender scoop" style="width: 100%; height: auto; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">Concept 1: artisanal, iconic, elegant</p></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><img src="assets/b7c9cef3b182.jpg" alt="Concept 2 sketches: a cartoon letter H with a cone and dripping scoop on top" style="width: 100%; height: auto; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">Concept 2: simple, cartoon, childlike</p></div>
@@ -130,13 +175,13 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<section class="m-pad-top" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6E5550">03 · Design development</p>
 <h2 style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 500; font-size: 40px; color: #33110F">Chunky, drippy, a little sweet</h2>
 <p style="margin: 0; max-width: 640px; font-size: 17px; font-weight: 300; line-height: 1.7">Where the identity stood after week 4. These are still concepts, not a final system: the direction I was refining, with logo, color and type options.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+<div class="m-swipe" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
 <div style="display: flex; flex-direction: column; gap: 10px"><img src="assets/5b147e8312b9.jpg" alt="Logo system: primary dark and light wordmarks with a dripping scoop, a stacked HC monogram, and seasonal color alternates" style="width: 100%; height: auto; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">Logo concepts</p></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><img src="assets/27c0c4aba488.jpg" alt="Storefront, current vs. concept: the old hanging sign compared with the concept wordmark and HC window decal" style="width: 100%; height: auto; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">The storefront, current vs. concept</p></div>
 </div>
@@ -165,13 +210,13 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<section class="m-pad-top" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6E5550">04 · In the shop</p>
 <h2 style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 500; font-size: 40px; color: #33110F">Menu, cups &amp; pints</h2>
 <p style="margin: 0; max-width: 640px; font-size: 17px; font-weight: 300; line-height: 1.7">Mockups showing how the concept direction could come to life in the shop.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px 20px">
+<div class="m-swipe" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px 20px">
 <div style="display: flex; flex-direction: column; gap: 12px"><img src="assets/193f4aa20712.jpg" alt="Now Serving menu board with flavor photos, next to a QR code stand" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block"><p style="margin: 0; font-size: 15px; color: #6E5550">A “Now Serving” board that finally describes each flavor, with a QR stand for the full list.</p></div>
 <div style="display: flex; flex-direction: column; gap: 12px"><img src="assets/2b70fe1a81c4.jpg" alt="Ice cream cups, cone sleeve, to-go bag and banner with the ring pattern" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block"><p style="margin: 0; font-size: 15px; color: #6E5550">Branded cups, cone sleeves and to-go bags.</p></div>
 <div style="display: flex; flex-direction: column; gap: 12px"><img src="assets/17b6d755f2d1.jpg" alt="Three pint designs: vanilla classic, pink seasonal Bunny Tracks and green vegan matcha" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 1px solid #EADBC4"><p style="margin: 0; font-size: 15px; color: #6E5550">To-go pints color-coded by line: classic, seasonal and vegan.</p></div>
@@ -180,7 +225,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <section style="margin-top: 120px; background: #2B2F7E; color: #F3EEFB">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #D9C3F2">05 · Online</p>
@@ -188,14 +233,14 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 <p style="margin: 0; max-width: 540px; font-size: 17px; font-weight: 300; line-height: 1.7; color: #E3DDF5">In this mockup, the website lets you filter flavors as Classic, Seasonal, Vegan or Soft Serve, and an “open now” badge shows today's hours. On Instagram, concept highlights cover flavors of the day, what's in season, local sourcing and behind the scenes.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+<div class="m-swipe" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
 <img src="assets/f8894e9589ab.jpg" alt="Honeycomb Creamery website on a laptop with flavor filters, and the Instagram profile on a phone" style="width: 100%; height: auto; display: block">
 <img src="assets/b9ada98db648.jpg" alt="Instagram profile before and after the rebrand" style="width: 100%; height: auto; display: block">
 </div>
 </div>
 </section>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<section class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6E5550">Toppings</p>
 <h2 style="margin: 0; font-family: DynaPuff, sans-serif; font-weight: 500; font-size: 40px; color: #33110F">Beyond the logo</h2>
@@ -209,7 +254,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <section style="background: #33110F; color: #FFF4D6">
-<div style="max-width: 1280px; margin: 0 auto; padding: 104px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 104px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
 <p style="margin: 0; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #F4B3C8">What I took away</p>
 <p style="margin: 0; font-size: 24px; line-height: 1.5">Looking back, I wish I’d focused more on building the brand as a whole rather than just the logo. There’s so much of a story to tell in a rebrand, especially for a local, handcrafted spot like this one. Having such a blank canvas opened up endless possibilities, and I really appreciated that freedom.</p>
@@ -219,7 +264,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <footer style="background: #1E0D25; color: #CFC6DE">
-<div style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
 <span>© 2026 hannah barenboim</span>
 <a href="mailto:hsb.designs@gmail.com" style="color: #CFC6DE">hsb.designs@gmail.com</a>
 </div>

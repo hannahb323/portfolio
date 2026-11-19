@@ -15,38 +15,84 @@
 <style>
 body{margin:0;background:#F4F2F8}
 a{color:#3D1A4A}a:hover{color:#5B3470}
-.filter{min-height:44px;padding:10px 18px;font-family:Poppins,sans-serif;font-size:15px;cursor:pointer;border-radius:999px;border:1.5px solid #3D1A4A;background:transparent;color:#3D1A4A}.filter[aria-pressed="true"]{background:#3D1A4A;color:#F1EEF7}.project[hidden]{display:none !important}
+/* mobile layer */
+.m-menu-btn{display:none}
 @media (max-width: 640px) {
+  /* spacing: 20px side margins, tighter vertical rhythm */
+  .m-pad { padding: 56px 20px !important; }
+  .m-pad-top { padding: 56px 20px 0 !important; }
+  .m-hero-pad { padding: 48px 20px 44px !important; gap: 32px !important; }
+  .m-bar { padding: 14px 20px !important; }
+  [style*="margin-top: 120px"] { margin-top: 56px !important; }
   [style*="flex: 1 1"], [style*="flex: 2 1"], [style*="flex: 0 1"] { flex-basis: 100% !important; min-width: 0 !important; }
-  [style*="grid-template-columns: repeat(auto-fit, minmax("], [style*="grid-template-columns: repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
-  [style*="padding: 48px;"] { padding: 28px !important; }
-  h1 { font-size: clamp(40px, 11vw, 104px) !important; }
+  [style*="repeat(auto-fit, minmax("], [style*="repeat(auto-fill, minmax("] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="gap: 64px"], [style*="gap: 56px"], [style*="gap: 48px"], [style*="gap: 44px"], [style*="gap: 40px"] { row-gap: 28px !important; column-gap: 20px !important; }
+  [style*="gap: 20px 64px"], [style*="gap: 24px 64px"], [style*="gap: 32px 64px"], [style*="gap: 40px 64px"], [style*="gap: 48px 64px"], [style*="gap: 48px 72px"], [style*="gap: 32px 72px"] { gap: 16px !important; }
+  .m-two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
   img { max-width: 100%; }
-  /* home: decorative shapes become a compact strip */
+
+  /* type scale: 16px body minimum, headings that fit a phone */
+  h1 { font-size: clamp(40px, 12vw, 52px) !important; line-height: 1.02 !important; }
+  h2[style*="font-size: 34px"], h2[style*="font-size: 36px"], h2[style*="font-size: 40px"], h2[style*="font-size: 30px"] { font-size: 28px !important; line-height: 1.15 !important; }
+  h3[style*="clamp(30px"], h3[style*="clamp(28px"] { font-size: 28px !important; }
+  p[style*="font-size: 24px"], p[style*="font-size: 21px"], p[style*="font-size: 20px"] { font-size: 18px !important; }
+  p[style*="clamp("] { font-size: 22px !important; }
+  p[style*="font-size: 17px"], p[style*="font-size: 18px"] { font-size: 16px !important; }
+
+  /* galleries become swipeable rows: the next item peeks in to show there is more */
+  .m-swipe { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px !important; margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 6px !important; justify-content: flex-start !important; align-items: flex-start !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .m-swipe::-webkit-scrollbar { display: none; }
+  .m-swipe > * { flex: 0 0 82% !important; min-width: 0 !important; max-width: none !important; scroll-snap-align: center; }
+  .m-swipe.m-phones > * { flex-basis: 62% !important; }
+  .m-swipe > *:only-child { margin: 0 auto !important; }
+  div[style*="gap: 40px 32px"] > figure:only-child { flex: 0 0 62% !important; }
+
+  /* header: logo + menu button; links open as a full-width list */
+  .m-menu-btn { display: inline-flex !important; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #CFC6DE; background: transparent; color: #F4F2F8; font: 500 15px Poppins, sans-serif; cursor: pointer; }
+  .m-nav { display: none !important; }
+  .m-nav[data-open="true"] { display: flex !important; flex-direction: column; flex-basis: 100%; gap: 0 !important; padding-top: 6px; }
+  .m-nav[data-open="true"] a { padding: 14px 2px !important; font-size: 18px !important; border-top: 1px solid rgba(255,255,255,0.14); border-radius: 0 !important; background: transparent !important; color: #F4F2F8 !important; }
+
+  /* home */
   #top > div[aria-hidden], #contact > div[aria-hidden] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; min-height: 0 !important; }
   #top > div[aria-hidden] > div, #contact > div[aria-hidden] > div { aspect-ratio: 1; }
   #contact > div[aria-hidden] span { font-size: 22px !important; }
+  #top span[style*="border-radius: 50%"] { width: 160px !important; height: 64px !important; font-size: 16px !important; }
+  #top span[style*="margin-left: -28px"] { width: 132px !important; height: 52px !important; margin-top: 36px !important; font-size: 14px !important; }
   #about > div:last-child { display: none !important; }
-  #about { padding-top: 72px !important; padding-bottom: 72px !important; }
-  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  a[style*="padding: 26px 40px"] { padding: 20px 26px !important; font-size: 17px !important; }
-  /* savvy: swipeable rows of phones */
-  div[style*="gap: 40px 32px"] { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -40px; padding: 0 40px 12px; gap: 20px !important; }
-  div[style*="gap: 40px 32px"] > figure[style] { flex: 0 0 68% !important; min-width: 0 !important; scroll-snap-align: center; }
-  div[style*="gap: 40px 32px"] > figure[style]:only-child { margin: 0 auto !important; }
-  /* honeycomb hero image: show the whole mockup */
+  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; row-gap: 20px !important; }
+  #work h2[style*="dashed"], #experience h2[style*="border-radius: 50%"] { width: 210px !important; height: 76px !important; font-size: 18px !important; }
+  #work [role="group"] { flex-wrap: nowrap !important; overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px; scrollbar-width: none; }
+  #work [role="group"] button { flex: 0 0 auto; }
+  #work [style*="padding: 48px;"] { padding: 28px 22px !important; gap: 24px !important; }
+  #work [style*="min-height: 380px"] { min-height: 0 !important; padding: 8px 20px 0 !important; }
+  #work [style*="min-height: 340px"] { min-height: 260px !important; }
+  #work img[style*="aspect-ratio: 4 / 3"] { aspect-ratio: 16 / 10 !important; }
+  #experience [style*="padding: 22px 0"] { padding: 16px 0 !important; }
+  #contact a[style*="padding: 26px 40px"] { padding: 18px 24px !important; font-size: 17px !important; }
+  #contact span[style*="margin-left: -16px"] { margin-top: 36px !important; }
+
+  #work [style*="minmax(300px"] { gap: 16px !important; }
+  #work article p, #work a p { font-size: 15px !important; }
+  #about p[style*="font-size: 20px"] { font-size: 17px !important; }
+  /* case studies */
+  img[style*="width: 150px"] { width: 96px !important; }
   [style*="min-height: 480px"] { min-height: 0 !important; }
   img[style*="min-height: 480px"] { height: auto !important; object-fit: contain !important; }
+  [style*="column-width"] { column-count: 2; column-width: auto !important; column-gap: 12px !important; }
+  [style*="column-width"] img { margin-bottom: 12px !important; border-radius: 8px !important; }
+  figcaption, [style*="font-size: 15px; color: #6E5550"] { font-size: 14px !important; }
 }
-</style>
+.filter{min-height:44px;padding:10px 18px;font-family:Poppins,sans-serif;font-size:15px;cursor:pointer;border-radius:999px;border:1.5px solid #3D1A4A;background:transparent;color:#3D1A4A}.filter[aria-pressed="true"]{background:#3D1A4A;color:#F1EEF7}.project[hidden]{display:none !important}</style>
 </head>
 <body>
 <div style="font-family: Poppins, system-ui, sans-serif; color: #2A1233; background: #F4F2F8">
 
 <header style="background: #3D1A4A">
-<div style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
 <a href="#top" style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 22px; color: #F4F2F8; text-decoration: none">hsb</a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px">
+<button type="button" class="m-menu-btn" aria-expanded="false" aria-controls="site-nav">menu<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+<nav id="site-nav" class="m-nav" data-open="false" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px">
 <a href="#about" style="padding: 12px 14px; font-size: 15px; color: #E7E2F0; text-decoration: none">about</a>
 <a href="#work" style="padding: 12px 14px; font-size: 15px; color: #E7E2F0; text-decoration: none">work</a>
 <a href="#experience" style="padding: 12px 14px; font-size: 15px; color: #E7E2F0; text-decoration: none">experience</a>
@@ -56,7 +102,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </header>
 
 <section id="top" style="background: #3D1A4A; display: flex; flex-wrap: wrap">
-<div style="flex: 1 1 520px; padding: 96px 40px 96px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 48px">
+<div class="m-hero-pad" style="flex: 1 1 520px; padding: 96px 40px 96px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 48px">
 <h1 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 500; font-size: clamp(52px, 6.6vw, 104px); line-height: 0.98; letter-spacing: -0.02em; color: #F1EEF7">hannah<br>barenboim</h1>
 <div style="display: flex; flex-wrap: wrap; align-items: center">
 <span style="display: inline-flex; align-items: center; justify-content: center; width: 200px; height: 84px; border: 1.5px solid #B07AC4; border-radius: 50%; font-size: 20px; color: #F1EEF7">ui/ux designer</span>
@@ -71,7 +117,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 </section>
 
-<section id="about" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
+<section class="m-pad" id="about" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
 <div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 500; font-size: 30px; color: #3D1A4A">hi, i'm hannah</h2>
 <p style="margin: 0; max-width: 560px; font-size: 20px; font-weight: 300; line-height: 1.6">I'm a UI/UX designer, currently designing from my standing desk. For 4+ years I've been the lead designer at Dfinitiv, a fintech startup.</p>
@@ -96,7 +142,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 
 
 <section id="work" style="background-color: #e7e2f0">
-<div style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
+<div class="m-pad" style="max-width: 1280px; margin: 0 auto; padding: 112px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
 <h2 style="margin: 0; display: inline-flex; align-items: center; justify-content: center; width: 260px; height: 96px; border: 1.5px dashed #3D1A4A; border-radius: 50%; font-family: Unbounded, sans-serif; font-weight: 500; font-size: 22px; line-height: 1.1; text-align: center; color: #3D1A4A">what i've<br>done</h2>
 <div role="group" aria-label="Filter projects" style="display: flex; flex-wrap: wrap; gap: 8px">
@@ -210,7 +256,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </div>
 </section>
 
-<section id="experience" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start">
+<section class="m-pad" id="experience" style="max-width: 1280px; margin: 0 auto; padding: 120px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start">
 <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 24px">
 <h2 style="margin: 0; display: inline-flex; align-items: center; justify-content: center; width: 280px; height: 96px; border: 1.5px solid #3D1A4A; border-radius: 50%; font-family: Unbounded, sans-serif; font-weight: 500; font-size: 22px; line-height: 1.1; text-align: center; color: #3D1A4A">where i've<br>worked</h2>
 <p style="margin: 0; max-width: 320px; font-size: 16px; line-height: 1.6; color: #4A3553">The short version. The full story is in my resume.</p>
@@ -241,7 +287,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <section id="contact" style="display: flex; flex-wrap: wrap; background: #ECE8F3">
-<div style="flex: 1 1 520px; padding: 112px 40px 96px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
+<div class="m-hero-pad" style="flex: 1 1 520px; padding: 112px 40px 96px max(40px, calc((100vw - 1280px) / 2 + 40px)); box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
 <h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 500; font-size: clamp(44px, 5.4vw, 76px); line-height: 1; color: #3D1A4A">let's sync up</h2>
 <div style="display: flex; flex-wrap: wrap; align-items: center">
 <a href="mailto:hsb.designs@gmail.com" style="display: inline-flex; align-items: center; justify-content: center; padding: 26px 40px; border: 1.5px solid #3D1A4A; border-radius: 50%; font-size: 20px; font-weight: 500; color: #3D1A4A; text-decoration: none">hsb.designs@gmail.com</a>
@@ -258,7 +304,7 @@ a{color:#3D1A4A}a:hover{color:#5B3470}
 </section>
 
 <footer style="background: #1E0D25; color: #CFC6DE">
-<div style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
+<div class="m-bar" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px">
 <span>© 2026 hannah barenboim</span>
 <span>hsb.designs@gmail.com</span>
 </div>
@@ -273,6 +319,10 @@ document.querySelectorAll(".filter").forEach(function (b) {
     document.querySelectorAll(".project").forEach(function (p) { p.hidden = !(f === "all" || p.dataset.cat === f); });
   });
 });
+var mb = document.querySelector(".m-menu-btn"), nav = document.getElementById("site-nav");
+function setMenu(o) { mb.setAttribute("aria-expanded", o); nav.dataset.open = o; }
+mb.addEventListener("click", function () { setMenu(nav.dataset.open !== "true" ? "true" : "false"); });
+nav.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setMenu("false"); }); });
 </script>
 </body>
 </html>
