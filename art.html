@@ -22,6 +22,21 @@ a{color:#5B3470}a:hover{color:#3D1A4A}
   [style*="padding: 48px;"] { padding: 28px !important; }
   h1 { font-size: clamp(40px, 11vw, 104px) !important; }
   img { max-width: 100%; }
+  /* home: decorative shapes become a compact strip */
+  #top > div[aria-hidden], #contact > div[aria-hidden] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; min-height: 0 !important; }
+  #top > div[aria-hidden] > div, #contact > div[aria-hidden] > div { aspect-ratio: 1; }
+  #contact > div[aria-hidden] span { font-size: 22px !important; }
+  #about > div:last-child { display: none !important; }
+  #about { padding-top: 72px !important; padding-bottom: 72px !important; }
+  #about [style*="minmax(150px"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  a[style*="padding: 26px 40px"] { padding: 20px 26px !important; font-size: 17px !important; }
+  /* savvy: swipeable rows of phones */
+  div[style*="gap: 40px 32px"] { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -40px; padding: 0 40px 12px; gap: 20px !important; }
+  div[style*="gap: 40px 32px"] > figure[style] { flex: 0 0 68% !important; min-width: 0 !important; scroll-snap-align: center; }
+  div[style*="gap: 40px 32px"] > figure[style]:only-child { margin: 0 auto !important; }
+  /* honeycomb hero image: show the whole mockup */
+  [style*="min-height: 480px"] { min-height: 0 !important; }
+  img[style*="min-height: 480px"] { height: auto !important; object-fit: contain !important; }
 }
 </style>
 </head>
